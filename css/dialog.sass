@@ -1,0 +1,37 @@
+// dialog
+
+.#{$class-prefix}__dialog
+    z-index: 1001
+    position: relative
+    max-width: 500px
+    top: 12vh
+    margin: auto
+    margin-bottom: 12vh
+
+    &__box
+        position: relative
+        border-radius: $border-radius
+        background-color: $bg-color
+
+        text-align: center
+        min-height: 50px
+
+    &__close
+        position: absolute
+        top: 3px
+        right: 4px
+        border: none
+        background: none
+        outline: none
+        display: flex
+        font-weight: 300
+
+        font-size: 19px
+        color: #bbb
+
+        &:hover
+            color: #222
+            cursor: pointer
+
+.#{$class-prefix}__dialog__content
+    padding: $box-padding-y $box-padding-x
