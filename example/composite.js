@@ -10,19 +10,17 @@ import {
 
 class ExampleComposite extends React.Component {
     closeOnClick(e) {
-        e.preventDefault()
         this.modal.hide()
     }
 
     showDialog(e) {
-        e.preventDefault()
         this.modal.show()
     }
 
     render() {
         return (
             <ModalComposite>
-                <button className='btn' href='#' onClick={this.showDialog.bind(this)}>open</button>
+                <button className='btn' onClick={this.showDialog.bind(this)}>open</button>
                 <Modal
                     visible
                     ref={(c) => this.modal = c}>
