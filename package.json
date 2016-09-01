@@ -1,11 +1,12 @@
 {
   "name": "@tgdn/react-modal",
-  "version": "0.0.4",
+  "version": "0.0.5",
+  "main": "index.js",
   "description": "An accessible, easy to use, customizable modal library for the web",
   "scripts": {
     "start": "node server.js",
     "build": "npm run build:js && npm run build:css",
-    "build:js": "babel src/ -d lib/ --ignore src/components",
+    "build:js": "babel src/ -d lib/",
     "build:css": "node-sass css/index.sass lib/css/_react-modal.css",
     "storybook": "start-storybook -p 9001 -s ./public",
     "build-storybook": "build-storybook -s ./public -o .out",
