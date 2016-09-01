@@ -5,7 +5,6 @@ import {Modal} from './Modal'
 
 class ModalComposite extends React.Component {
 
-
     componentDidMount() {
         const {children} = this.props
         const modalsContainerId = 'modals-container'

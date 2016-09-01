@@ -1,17 +1,14 @@
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+import {storiesOf} from '@kadira/storybook'
 
 import {
     ModalDialog,
     ModalBackdrop,
     ModalContent,
     Modal,
-    ModalComposite
 } from '../../src'
 
 import {Example, ExampleComposite} from '../../example'
-
-import IoIosMore from 'react-icons/lib/io/ios-more'
 
 storiesOf('Modal', module)
     .add('Basic', () => (
@@ -44,8 +41,10 @@ storiesOf('Modal', module)
                 </p>
             </ModalContent>
         </Modal>
-    )).add('Full example', () => (
+    ))
+    .add('Full example', () => (
         <Example />
-    )).add('Full example Modal Composite', () => (
+    ))
+    .add('Full example Modal Composite', () => (
         <ExampleComposite />
     ))

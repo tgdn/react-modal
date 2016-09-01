@@ -1,9 +1,10 @@
 import React from 'react'
-import { configure, addDecorator } from '@kadira/storybook';
+import {configure, addDecorator} from '@kadira/storybook';
 import '../css/index.sass'
+import '../css/btn.sass'
 
 function loadStories() {
-  require('../components/stories/modal');
+    require('../components/stories/modal');
 }
 
 addDecorator((story) => (

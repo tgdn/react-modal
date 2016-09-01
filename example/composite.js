@@ -1,34 +1,42 @@
 import React from 'react'
 
 import {
-    ModalDialog,
-    ModalBackdrop,
     ModalContent,
     Modal,
-    ModalComposite
+    ModalComposite,
 } from '../src'
 
 class ExampleComposite extends React.Component {
-    closeOnClick(e) {
+
+    constructor(props) {
+        super(props)
+        this.closeOnClick = this.closeOnClick.bind(this)
+        this.showDialog = this.showDialog.bind(this)
+    }
+
+    closeOnClick() {
         this.modal.hide()
     }
 
-    showDialog(e) {
+    showDialog() {
         this.modal.show()
     }
 
     render() {
         return (
             <ModalComposite>
-                <button className='btn' onClick={this.showDialog.bind(this)}>open</button>
-                <Modal
-                    visible
-                    ref={(c) => this.modal = c}>
+                <button className='btn' onClick={this.showDialog}>open</button>
+                <Modal ref={(c) => {this.modal = c}}>
                     <ModalContent>
                         This is an example
                         <br />
                         <br />
-                        <button className='btn' onClick={this.closeOnClick.bind(this)}>Close with a button</button>
+                        <button
+                            className='btn'
+                            onClick={this.closeOnClick}
+                        >
+                            Close with a button
+                        </button>
                     </ModalContent>
                 </Modal>
             </ModalComposite>

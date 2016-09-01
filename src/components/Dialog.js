@@ -2,12 +2,17 @@ import React from 'react'
 
 class ModalDialog extends React.Component {
 
+    constructor(props) {
+        super(props)
+        this.doHide = this.doHide.bind(this)
+    }
+
     componentDidMount() {
         const {hideHandler} = this.props
-        if (hideHandler && typeof hideHandler === "function") {
+        if (hideHandler && typeof hideHandler === 'function') {
             this.hide = hideHandler
         } else {
-            this.hide = function() {}
+            this.hide = function nop() {}
         }
     }
 
@@ -16,17 +21,16 @@ class ModalDialog extends React.Component {
     }
 
     render() {
-        const {
-            canClose
-        } = this.props
-
-
-
         return (
             <div className='Modal__dialog'>
                 <div className='Modal__dialog__box'>
-                    {canClose && (
-                        <button onClick={this.doHide.bind(this)} type="button" class="Modal__dialog__close" aria-label="Close">
+                    {this.props.canClose && (
+                        <button
+                            onClick={this.doHide}
+                            type="button"
+                            className="Modal__dialog__close"
+                            aria-label="Close"
+                        >
                             <span aria-hidden="true">×</span>
                         </button>
                     )}
@@ -35,6 +39,12 @@ class ModalDialog extends React.Component {
             </div>
         )
     }
+}
+
+ModalDialog.propTypes = {
+    children: React.PropTypes.node,
+    hideHandler: React.PropTypes.func,
+    canClose: React.PropTypes.bool,
 }
 
 export {ModalDialog}
