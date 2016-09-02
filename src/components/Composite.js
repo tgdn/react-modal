@@ -9,7 +9,7 @@ class ModalComposite extends React.Component {
         const {children} = this.props
         const modalsContainerId = 'modals-container'
 
-        var modalsContainer = document.getElementById(modalsContainerId)
+        let modalsContainer = document.getElementById(modalsContainerId)
         if (!modalsContainer) {
             modalsContainer = document.createElement('div')
             modalsContainer.id = modalsContainerId
@@ -45,6 +45,10 @@ class ModalComposite extends React.Component {
             </span>
         )
     }
+}
+
+ModalComposite.propTypes = {
+    children: React.PropTypes.node,
 }
 
 export {ModalComposite}

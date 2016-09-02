@@ -26,7 +26,10 @@ class Example extends React.Component {
                     visible
                     ref={(c) => this.modal = c}>
                     <ModalContent>
-                        This is an example
+                        This is an example of non composite,
+                        you can close it and open it again.
+                        <br />
+                        Source is at <b>example/index.js</b>
                         <br />
                         <br />
                         <button className='btn' onClick={this.closeOnClick.bind(this)}>Close with a button</button>

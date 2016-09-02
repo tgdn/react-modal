@@ -28,7 +28,10 @@ class ExampleComposite extends React.Component {
                 <button className='btn' onClick={this.showDialog}>open</button>
                 <Modal ref={(c) => {this.modal = c}}>
                     <ModalContent>
-                        This is an example
+                        <h3>This modal is composite</h3>
+                        You can close it and open it again
+                        <br />
+                        Source is at <b>example/composite.js</b>
                         <br />
                         <br />
                         <button
