@@ -1,0 +1,65 @@
+// transition
+
+$transition-prefix: "Modal--"
+$backdrop: ".#{$class-prefix}__backdrop"
+$dialog: ".#{$class-prefix}__dialog__box"
+
+$fadeEasing: cubic-bezier(0.19, 1, 0.22, 1)
+$scaleEasing: cubic-bezier(0.285, 0.705, 0.000, 1)
+
+// -- fade --
+
+// preferred props:
+// enterTimeout: 300
+// leaveTimeout: 200
+
+.#{$transition-prefix}fade-enter
+  opacity: 0.01
+
+.#{$transition-prefix}fade-enter.#{$transition-prefix}fade-enter-active
+  opacity: 1
+  transition: opacity 300ms $fadeEasing
+
+.#{$transition-prefix}fade-leave
+  opacity: 1
+
+.#{$transition-prefix}fade-leave.#{$transition-prefix}fade-leave-active
+  opacity: 0.01
+  transition: opacity 200ms $fadeEasing
+
+
+// -- scale --
+
+// preferred props:
+// enterTimeout: 300
+// leaveTimeout: 180
+
+// backdrop
+.#{$transition-prefix}scale-enter#{$backdrop}
+  opacity: 0.01
+
+.#{$transition-prefix}scale-enter.#{$transition-prefix}scale-enter-active#{$backdrop}
+  opacity: 1
+  transition: opacity 200ms $fadeEasing
+
+.#{$transition-prefix}scale-leave
+  opacity: 1
+
+.#{$transition-prefix}scale-leave.#{$transition-prefix}scale-leave-active#{$backdrop}
+  opacity: 0.01
+  transition: opacity 300ms $fadeEasing
+
+// dialog
+.#{$transition-prefix}scale-enter #{$dialog}
+  transform: scale(0.7)
+
+.#{$transition-prefix}scale-enter.#{$transition-prefix}scale-enter-active #{$dialog}
+  transform: scale(1)
+  transition: all 300ms $scaleEasing
+
+.#{$transition-prefix}scale-leave #{$dialog}
+  transform: scale(1)
+
+.#{$transition-prefix}scale-leave.#{$transition-prefix}scale-leave-active #{$dialog}
+  transform: scale(0.7)
+  transition: all 300ms $scaleEasing

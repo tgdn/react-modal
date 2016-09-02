@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import {ModalDialog} from './Dialog'
 import {ModalBackdrop} from './Backdrop'
@@ -43,6 +44,7 @@ class Modal extends React.Component {
     }
 
     handleOutsideClick(e) {
+        if (!this.state.visible) return // early exit
         const domNode = ReactDOM.findDOMNode(this.dialog)
         if ((!domNode || !domNode.contains(e.target)) && this.state.closeOnClick) {
             this.hide()
@@ -50,6 +52,7 @@ class Modal extends React.Component {
     }
 
     handleKeyboard(event) {
+        if (!this.state.visible) return // early exit
         if (this.props.keyboard && (typeof this.props.keyboard) === 'function') {
             this.props.keyboard(event)
         } else if (this.props.keyboard) {
@@ -74,15 +77,16 @@ class Modal extends React.Component {
         })
     }
 
-    render() {
+    renderModal() {
         const {
             children,
             canClose,
         } = this.props
 
         return this.state.visible && (
-            <ModalBackdrop ref={(c) => {this.backdrop = c}}>
+            <ModalBackdrop key='backdrop' ref={(c) => {this.backdrop = c}}>
                 <ModalDialog
+                    key='dialog'
                     ref={c => {this.dialog = c}}
                     canClose={canClose}
                     hideHandler={this.hide}
@@ -90,6 +94,23 @@ class Modal extends React.Component {
                     {children}
                 </ModalDialog>
             </ModalBackdrop>
+        )
+    }
+
+    render() {
+        const modal = this.renderModal()
+
+        return (
+            <ReactCSSTransitionGroup
+                component='div'
+                transitionName={`Modal--${this.props.transitionName}`}
+                transitionEnter={this.props.animate}
+                transitionLeave={this.props.animate}
+                transitionEnterTimeout={this.props.enterTimeout}
+                transitionLeaveTimeout={this.props.leaveTimeout}
+            >
+                {modal}
+            </ReactCSSTransitionGroup>
         )
     }
 }
@@ -107,6 +128,11 @@ Modal.propTypes = {
     beforeShow: React.PropTypes.func,
     hasClosed: React.PropTypes.func,
     hasShown: React.PropTypes.func,
+    animate: React.PropTypes.bool,
+    transitionName: React.PropTypes.string,
+    appearTimeout: React.PropTypes.number,
+    enterTimeout: React.PropTypes.number,
+    leaveTimeout: React.PropTypes.number,
 }
 
 Modal.defaultProps = {
@@ -114,6 +140,10 @@ Modal.defaultProps = {
     closeOnClick: true,
     keyboard: true,
     canClose: true,
+    animate: true,
+    transitionName: 'fade',
+    enterTimeout: 300,
+    leaveTimeout: 200,
 }
 
 export {Modal}
