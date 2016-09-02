@@ -1,7 +1,7 @@
 {
   "name": "@tgdn/react-modal",
-  "version": "0.0.7",
-  "main": "./lib/@index.js",
+  "version": "0.0.8",
+  "main": "./lib/index.js",
   "description": "An accessible, easy to use, customizable modal library for the web",
   "scripts": {
     "start": "node server.js",
