@@ -64,6 +64,18 @@ class Modal extends React.Component {
         }
     }
 
+    blockScrolling() {
+        const overflow = window.getComputedStyle(document.body).getPropertyValue('overflow')
+        if (overflow !== 'hidden') {
+            document.body.style.overflow = 'hidden'
+        }
+    }
+
+    unblockScrolling() {
+        // TODO: check whether there are multiple mounted modals
+        document.body.style.overflow = ''
+    }
+
     hide() {
         // delegate hide
         this.setState({
@@ -82,6 +94,13 @@ class Modal extends React.Component {
             children,
             canClose,
         } = this.props
+
+        // block body scrolling
+        if (this.state.visible && this.props.blockScrolling) {
+            this.blockScrolling()
+        } else if (!this.state.visible && this.props.blockScrolling) {
+            this.unblockScrolling()
+        }
 
         return this.state.visible && (
             <ModalBackdrop key='backdrop' ref={(c) => {this.backdrop = c}}>
@@ -128,6 +147,7 @@ Modal.propTypes = {
     beforeShow: React.PropTypes.func,
     hasClosed: React.PropTypes.func,
     hasShown: React.PropTypes.func,
+    blockScrolling: React.PropTypes.bool,
     animate: React.PropTypes.bool,
     transitionName: React.PropTypes.string,
     appearTimeout: React.PropTypes.number,
@@ -140,6 +160,7 @@ Modal.defaultProps = {
     closeOnClick: true,
     keyboard: true,
     canClose: true,
+    blockScrolling: true,
     animate: true,
     transitionName: 'fade',
     enterTimeout: 300,
