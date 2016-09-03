@@ -1,6 +1,6 @@
 {
   "name": "@tgdn/react-modal",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "main": "./lib/index.js",
   "description": "An accessible, easy to use, customizable modal library for the web",
   "scripts": {

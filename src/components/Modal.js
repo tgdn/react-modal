@@ -87,14 +87,28 @@ class Modal extends React.Component {
 
     hide() {
         // delegate hide
+        if (this.props.beforeHide) {
+            this.props.beforeHide()
+        }
         this.setState({
             visible: false,
+        }, () => {
+            if (this.props.hasHidden) {
+                this.props.hasHidden()
+            }
         })
     }
 
     show() {
+        if (this.props.beforeShow) {
+            this.props.beforeShow()
+        }
         this.setState({
             visible: true,
+        }, () => {
+            if (this.props.hasShown) {
+                this.props.hasShown()
+            }
         })
     }
 
@@ -152,9 +166,9 @@ Modal.propTypes = {
         React.PropTypes.bool,
     ]),
     canClose: React.PropTypes.bool,
-    beforeClose: React.PropTypes.func,
+    beforeHide: React.PropTypes.func,
     beforeShow: React.PropTypes.func,
-    hasClosed: React.PropTypes.func,
+    hasHidden: React.PropTypes.func,
     hasShown: React.PropTypes.func,
     blockScrolling: React.PropTypes.bool,
     animate: React.PropTypes.bool,

@@ -4,7 +4,7 @@ import {
     ModalDialog,
     ModalBackdrop,
     ModalContent,
-    Modal
+    Modal,
 } from '../src'
 
 class Example extends React.Component {

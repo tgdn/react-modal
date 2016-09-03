@@ -41,7 +41,9 @@ class ExamplePortal extends React.Component {
             <span>
                 <button className='btn' onClick={this.showDialog}>open</button>
                 <ModalPortal>
-                    <Modal ref={(c) => {this.modal = c}}>
+                    <Modal
+                        ref={(c) => {this.modal = c}}
+                    >
                         <ModalContent>
                             <h3>This modal is composite</h3>
                             You can close it and open it again
