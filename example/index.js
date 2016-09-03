@@ -8,6 +8,12 @@ import {
 } from '../src'
 
 class Example extends React.Component {
+    constructor(props) {
+        super(props)
+        this.closeOnClick = this.closeOnClick.bind(this)
+        this.showDialog = this.showDialog.bind(this)
+    }
+
     closeOnClick(e) {
         e.preventDefault()
         this.modal.hide()
@@ -21,10 +27,17 @@ class Example extends React.Component {
     render() {
         return (
             <div>
-                <button className='btn' href='#' onClick={this.showDialog.bind(this)}>open</button>
+                <button
+                    className='btn'
+                    href='#'
+                    onClick={this.showDialog}
+                >
+                    open
+                </button>
                 <Modal
                     visible
-                    ref={(c) => this.modal = c}>
+                    ref={(c) => {this.modal = c}}
+                >
                     <ModalContent>
                         This is an example of non composite,
                         you can close it and open it again.
@@ -32,7 +45,12 @@ class Example extends React.Component {
                         Source is at <b>example/index.js</b>
                         <br />
                         <br />
-                        <button className='btn' onClick={this.closeOnClick.bind(this)}>Close with a button</button>
+                        <button
+                            className='btn'
+                            onClick={this.closeOnClick}
+                        >
+                            Close with a button
+                        </button>
                     </ModalContent>
                 </Modal>
             </div>
@@ -40,4 +58,4 @@ class Example extends React.Component {
     }
 }
 export {Example}
-export {ExampleComposite} from './composite'
+export {ExamplePortal} from './portal'

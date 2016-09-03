@@ -43,6 +43,15 @@ class Modal extends React.Component {
         document.removeEventListener('keydown', this.handleKeyboard, true)
     }
 
+    shouldComponentUpdate() {
+        console.log('shouldUpdate Modal?');
+        return true
+    }
+
+    componentDidUpdate() {
+        console.log('Modal updated');
+    }
+
     handleOutsideClick(e) {
         if (!this.state.visible) return // early exit
         const domNode = ReactDOM.findDOMNode(this.dialog)

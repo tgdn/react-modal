@@ -3,15 +3,15 @@ import {storiesOf} from '@kadira/storybook'
 
 import {
     ModalContent,
-    ModalComposite,
     Modal,
+    ModalPortal,
 } from '../../src'
 
-import {Example, ExampleComposite} from '../../example'
+import {Example, ExamplePortal} from '../../example'
 
 storiesOf('Modal', module)
     .add('Basic', () => (
-        <ModalComposite>
+        <ModalPortal>
             <button className='btn'>This is a button</button>
             <Modal visible keyboard={false} canClose={false} closeOnClick={false}>
                 <ModalContent>
@@ -22,9 +22,9 @@ storiesOf('Modal', module)
                     </p>
                 </ModalContent>
             </Modal>
-        </ModalComposite>
+        </ModalPortal>
     ))
-    .add('Modal no Composite', () => (
+    .add('Modal no portal', () => (
         <Modal visible canClose={false} closeOnClick={false}>
             <ModalContent>
                 <h3>This one is just rendered where you want</h3>
@@ -38,6 +38,6 @@ storiesOf('Modal', module)
     .add('Full example', () => (
         <Example />
     ))
-    .add('Full example Modal Composite', () => (
-        <ExampleComposite />
+    .add('Full example with Portal', () => (
+        <ExamplePortal />
     ))
