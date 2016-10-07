@@ -44,12 +44,7 @@ class Modal extends React.Component {
     }
 
     shouldComponentUpdate() {
-        console.log('shouldUpdate Modal?');
         return true
-    }
-
-    componentDidUpdate() {
-        console.log('Modal updated');
     }
 
     handleOutsideClick(e) {
