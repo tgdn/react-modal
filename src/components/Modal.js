@@ -10,6 +10,7 @@ class Modal extends React.Component {
     constructor(props) {
         super(props)
 
+        this.mounted = false
         this.hide = this.hide.bind(this)
         this.show = this.show.bind(this)
         this.handleOutsideClick = this.handleOutsideClick.bind(this)
@@ -34,11 +35,13 @@ class Modal extends React.Component {
     }
 
     componentDidMount() {
+        this.mounted = true
         document.addEventListener('click', this.handleOutsideClick, true)
         document.addEventListener('keydown', this.handleKeyboard, true)
     }
 
     componentWillUnmount() {
+        this.mounted = false
         document.removeEventListener('click', this.handleOutsideClick, true)
         document.removeEventListener('keydown', this.handleKeyboard, true)
     }
@@ -85,13 +88,15 @@ class Modal extends React.Component {
         if (this.props.beforeHide) {
             this.props.beforeHide()
         }
-        this.setState({
-            visible: false,
-        }, () => {
-            if (this.props.hasHidden) {
-                this.props.hasHidden()
-            }
-        })
+        if (this.mounted) {
+            this.setState({
+                visible: false,
+            }, () => {
+                if (this.props.hasHidden) {
+                    this.props.hasHidden()
+                }
+            })
+        }
     }
 
     show() {
